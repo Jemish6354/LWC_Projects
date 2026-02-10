@@ -1,0 +1,84 @@
+<template>
+    <lightning-card title="Quiz App 2 in LWC">
+        <div class="slds-m-around_medium">
+            <form>
+            <template if:true={currentQuestion}>
+                   
+                    <div>
+                        <strong>
+                            {currentQuestion.id} - {currentQuestion.question}
+                        </strong>
+                    </div>
+            </template>
+
+            <!-- radio button options -->
+              <div class="slds-grid slds-gutters slds-p-top_medium">
+                    <div class="slds-col">
+                        <input 
+                            type="radio" 
+                            name={currentQuestion.id} 
+                            value="a" 
+                            onchange={changeHandler}/>
+                        {currentQuestion.answers.a}
+                    </div>
+                    <div class="slds-col">
+                        <input 
+                            type="radio" 
+                            name={currentQuestion.id} 
+                            value="b" 
+                            onchange={changeHandler}/>
+                        {currentQuestion.answers.b}
+                    </div>
+
+                    <div class="slds-col">
+                        <input 
+                            type="radio" 
+                            name={currentQuestion.id} 
+                            value="c" 
+                            onchange={changeHandler}/>
+                        {currentQuestion.answers.c}
+                    </div>
+                </div>
+
+            <!-- navigation buttons -->
+            <div class="slds-m-top_medium">
+                <template if:true={is}>
+                <lightning-button
+                    label="Previous"
+                    onclick={previousHandler}
+                    disabled={isFirst}
+                    class="slds-m-right_small">
+                </lightning-button>
+                </template>
+
+                <lightning-button
+                    label="Next"
+                    onclick={nextHandler}
+                    disabled={isLast}
+                    class="slds-m-right_small">
+                </lightning-button>
+            </div>
+
+            <!-- submit button at last -->
+            <template if:true={isLast}>
+                <lightning-button
+                    label="Submit"
+                    onclick={submitHandler}
+                    class="slds-m-top_medium"
+                    if:true={isLast}>
+                </lightning-button>
+            </template>
+            </form>
+
+            <!-- show result at last -->
+            <template if:true={isSubmitted}>
+                <div class="slds-m-top_medium slds-text-heading_medium">
+                    Your Score: {correctAnswers} out of {myQuestions.length}
+                </div>
+            </template>
+
+                        
+
+        </div>
+    </lightning-card>   
+</template>
