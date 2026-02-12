@@ -3,6 +3,7 @@ const BOOK_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 export default class BookApp extends LightningElement {
     query=""
     timer
+    key='' //url+'&key='
 
     books = [];
 
@@ -11,7 +12,7 @@ export default class BookApp extends LightningElement {
     }
 
     fetchBookData(){
-         fetch(BOOK_URL + this.query +'&key=AIzaSyA4I2JAHD98-QTASUCmdrB9PsQPVdQ3HtQ')
+         fetch(BOOK_URL + this.query)
             .then(response=>response.json())
             .then(data=>{
                 this.books =  data ? this.formatData(data) :[];
