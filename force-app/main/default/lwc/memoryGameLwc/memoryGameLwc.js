@@ -112,10 +112,10 @@ export default class MemoryGameLwc extends LightningElement {
     timer(){
           let startTime = new Date()
           this.timerRef = setInterval(()=>{
-            let diff = new Date().getTime() - startTime.getTime()
-            let d = Math.floor(diff/1000)
-            const m = Math.floor(d % 3600 / 60);
-            const s = Math.floor(d % 3600 % 60);
+            let diff = new Date().getTime() - startTime.getTime() // in milli seconds
+            let d = Math.floor(diff/1000) // converts into seconds
+            const m = Math.floor(d % 3600 / 60); // convet to min
+            const s = Math.floor(d % 3600 % 60); // convet to sec
             const mDisplay = m>0 ? m+(m===1? "minute, ":" minutes, "):""
             const sDisplay = s>0 ? s+(s===1? "second":" seconds"):""
             this.totalTime = mDisplay + sDisplay
